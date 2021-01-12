@@ -1,10 +1,20 @@
-import 'package:';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Authentication {
+  
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> createUser() async {
+    try {
+      final UserCredential userCredential = 
+        await _auth.createUserWithEmailAndPassword(email: 'usermail@user.com', password: '12345678');
+      print('New user id: ${userCredential.user.uid}');
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+    }
+  }
 
-  Future<void> resetPassword() async {
+  Future<void> resetUserPassword() async {
     try {
       await _auth.sendPasswordResetEmail(email: 'usermail@user.com');
     } on FirebaseAuthException catch (e) {
@@ -12,7 +22,7 @@ class Authentication {
     }
   }
 
-  Future<void> changePassword({User user, String password}) async {
+  Future<void> changeUserPassword({User user, String password}) async {
     final User userCredential = user ?? _auth.currentUser;
 
     await userCredential.updatePassword(password).then((_) {

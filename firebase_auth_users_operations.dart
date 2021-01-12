@@ -10,7 +10,7 @@ class Authentication {
         await _auth.createUserWithEmailAndPassword(email: 'usermail@user.com', password: '12345678');
       print('New user id: ${userCredential.user.uid}');
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      print(e.code); // Preferencial o uso do debugPrint.
     }
   }
 
@@ -18,7 +18,7 @@ class Authentication {
     try {
       await _auth.sendPasswordResetEmail(email: 'usermail@user.com');
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      print(e.code); // Preferencial o uso do debugPrint.
     }
   }
 
@@ -28,7 +28,7 @@ class Authentication {
     await userCredential.updatePassword(password).then((_) {
       print('Sucesso ao trocar a senha');
     }).catchError((error) {
-      print(error);
+      print(error); // Preferencial o uso do debugPrint.
     });
   }
 

@@ -48,6 +48,8 @@ class Authentication {
       print(error); // Preferencial o uso do debugPrint.
     });
   }
+  
+  //Excluindo a conta do usuário
 
 }
 
